@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <span class="headerText">super famous mike</span>
+    <div class="headerText">
+      <span>SUPER FAMOUS MIKE</span>
+    </div>
   </div>
 </template>
 
@@ -13,21 +15,21 @@ export default {
 
 <style scoped>
   .header {
-    text-align: left;
-    padding: 40px 0 10px 10px;
-    border: 1px solid var(--divider-color);
+    text-align: center;
+    padding: 10px;
+    border: 1px solid var(--dark-primary-color);
     margin: 10px;
     border-radius: 2px;
-    background: var(--default-primary-color);
+    background: var(--white);
     box-shadow: 5px 5px var(--divider-color);
   }
 
-  .header:hover {
-    border-color: var(--light-primary-color);
-    box-shadow: 5px 5px var(--light-primary-color);
+  .headerText {
+    display: inline-block;
   }
 
-  .headerText {
+  .headerText span {
     font-size: 24px;
+    display: block;
   }
 </style>
