@@ -1,19 +1,27 @@
 <template>
   <div id="app">
     <site-header />
+    <intro-section />
     <music-section />
+    <photo-header />
+    <photo-gallery />
+    <dev-stats/>
     <site-footer />
   </div>
 </template>
 
 <script>
 import SiteHeader from "./components/SiteHeader.vue";
-import SiteFooter from "./components/SiteFooter.vue";
+import IntroSection from "./components/IntroSection.vue";
 import MusicSection from "./components/MusicSection.vue";
+import PhotoHeader from "./components/PhotoHeader.vue";
+import PhotoGallery from "./components/PhotoGallery.vue";
+import DevStats from "./components/DevStats.vue";
+import SiteFooter from "./components/SiteFooter.vue";
 
 export default {
   name: 'app',
-  components: { SiteHeader, SiteFooter, MusicSection },
+  components: { SiteHeader, IntroSection, MusicSection, PhotoHeader, PhotoGallery, DevStats, SiteFooter },
 }
 </script>
 

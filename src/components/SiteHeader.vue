@@ -3,9 +3,9 @@
     <site-link>Bio</site-link>
     <div class="siteHeader-title">
       <div class="siteHeader-angleLine siteHeader-angleLine--left" />
-      <div class="siteHeader-title-top">SUPER</div>
-      <div class="siteHeader-title-middle">FAMOUS</div>
-      <div class="siteHeader-title-bottom">MIKE</div>
+      <div class="t-weight--light">SUPER</div>
+      <div class="t-weight--light siteHeader-title-middle">FAMOUS</div>
+      <div class="t-weight--light siteHeader-title-bottom">MIKE</div>
       <div class="siteHeader-angleLine siteHeader-angleLine--right" />
     </div>
     <site-link>Contact</site-link>
@@ -29,12 +29,17 @@ export default {
     padding: 16px 48px;
     border-bottom: 1px solid var(--super-famous-black);
   }
+
+  @media(max-width: 1001px) {
+    .siteHeader { padding: 16px 24px; }
+  }
   
   .siteHeader-angleLine {
     border: 2px solid var(--super-famous-green);
     transform: skew(45deg);
     height: 70px;
     position: absolute;
+    top: -5px;
   }
   .siteHeader-angleLine--left { left: -16px }
   .siteHeader-angleLine--right { right: -42px; }
@@ -48,7 +53,6 @@ export default {
     position: relative;
   }
 
-  .siteHeader-title-top { }
   .siteHeader-title-middle { padding-left: 25px; }
   .siteHeader-title-bottom { padding-left: 68px; }
 </style>

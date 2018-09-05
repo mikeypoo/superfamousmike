@@ -4,3 +4,9 @@
   --super-famous-green: #168e4c;
   --super-famous-font: 'Tenor Sans', sans-serif;
 }
+
+/* Global text styles */
+
+.t-weight--light {
+  font-weight: 100;
+}
