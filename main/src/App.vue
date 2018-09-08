@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <site-header />
     <intro-section />
     <music-section />
