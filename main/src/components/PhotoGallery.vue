@@ -15,7 +15,7 @@ export default {
 
   .photoGallery {
     height: 500px;
-    background: var(--super-famous-white);
-    color: var(--super-famous-black);
+    background: var(--super-famous-black);
+    color: var(--super-famous-white);
   }
 </style>

@@ -1,20 +1,35 @@
 <template>
   <div class="musicSection">
     <div class="musicSection-triangle" />
-    <div class="musicSection-album">
-      <h1>Real</h1>
-      <div class="t-weight--light musicSection-text">Mike majored in Math, so he likes numbers. Like, he <em>really</em> likes numbers. His debut EP is called <em>Real</em> to pay homage to the set of numbers you can find on a number line - the reals. <br><br>Also, he thinks the songs on it are... real good. 😅</div>
-    </div>
-    <div class="t-weight--light musicSection-listen">
-      <div>Have a listen to one of the singles from the EP titled <em>Masterpiece</em></div>
-      <div class="musicSection-player">Here goes the player</div>
+    <div class="musicSection-container">
+      <div class="musicSection-album">
+        <h1><em>Real</em></h1>
+        <h2>Super Famous Mike</h2>
+        <div class="t-weight--light musicSection-text">A collection of, like, <em>real</em> songs, ya know?</div>
+      </div>
+      <div class="t-weight--light musicSection-listen">
+        <div>Whoa! You can listen to a nice little songypoo right here!</div>
+        <aplayer :music="masterpiece" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Aplayer from "vue-aplayer";
 export default {
-  name: 'MusicSection'
+  name: 'MusicSection',
+  components: { Aplayer },
+  data: () => {
+    return {
+      masterpiece: { 
+        title: "Masterpiece", 
+        artist: "Super Famous Mike", 
+        src: "masterpiece.mp3", 
+        pic: "mini_album.jpg" 
+      }
+    };
+  },
 }
 </script>
 
@@ -29,34 +44,51 @@ export default {
     position: relative;
   }
 
-  .musicSection-album {
+  .musicSection-container {
     position: absolute;
-    top: 0;
-    width: 45%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .musicSection-album {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -64px;
+    margin-left: 64px;
     text-align: center;
-    margin-left: 16px;
-    margin-top: 32px;
     color: var(--super-famous-white);
   }
 
   .musicSection-listen {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 45%;
     text-align: center;
-    margin-right: 16px;
-    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-right: 64px;
+    margin-bottom: 128px;
     color: var(--super-famous-white);
   }
 
   h1 { 
-    margin-bottom: 16px;
-    font-size: 4em;
     margin: 0;
-    font-size: 4em;
-    margin-bottom: 16px;
+    font-size: 6em;
     font-weight: 500;
+  }
+
+  h2 { 
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 2em;
+    font-weight: 500;
+  }
+
+  .aplayer {
+    margin-top: 16px;
+    border: 1px solid var(--super-famous-white);
   }
 
   .musicSection-triangle {

@@ -25,4 +25,8 @@ export default {
     display: flex;
     justify-content: space-around;
   }
+
+  @media(max-width: 1001px) {
+    .siteFooter { padding: 16px 24px; }
+  }
 </style>
