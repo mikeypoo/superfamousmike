@@ -6,6 +6,10 @@
     </div>
     <div class="bonus-music">
       <div class="bonus-musicHeader">
+        A boy can dream, can't he?
+      </div>
+      <img src="images/super_famous_band.png">
+      <div class="bonus-musicHeader">
         Enjoy these BETA tracks - heard only by the <em>most specialest</em> of ears!
       </div>
       <div class="bonus-musicTracks">
@@ -167,5 +171,12 @@ export default {
     background: var(--super-famous-white);
     color: var(--super-famous-black);
     box-shadow: 0 0 6px 4px var(--super-famous-green);
+  }
+
+  img { 
+    width: 100%; 
+    max-width: 600px;
+    max-height: 400px;
+    object-fit: contain;
   }
 </style>
