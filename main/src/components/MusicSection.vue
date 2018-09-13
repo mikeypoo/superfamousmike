@@ -4,8 +4,8 @@
     <div class="musicSection-container">
       <div class="musicSection-album">
         <h1><em>Real</em></h1>
+        <div class="t-weight--light musicSection-text">The debut EP of, like, <em>really real</em> songs from</div>
         <h2>Super Famous Mike</h2>
-        <div class="t-weight--light musicSection-text">A collection of, like, <em>real</em> songs, ya know?</div>
       </div>
       <div class="t-weight--light musicSection-listen">
         <div>Whoa! You can listen to a nice little songypoo right here!</div>
@@ -25,7 +25,7 @@ export default {
       masterpiece: { 
         title: "Masterpiece", 
         artist: "Super Famous Mike", 
-        src: "masterpiece.mp3", 
+        src: "music/masterpiece.mp3", 
         pic: "mini_album.jpg" 
       }
     };
@@ -49,16 +49,14 @@ export default {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 
   .musicSection-album {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-top: -64px;
-    margin-left: 64px;
+    align-content: center;
     text-align: center;
     color: var(--super-famous-white);
   }
@@ -67,16 +65,19 @@ export default {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    margin-right: 64px;
-    margin-bottom: 128px;
+    margin: 0 128px;
     color: var(--super-famous-white);
+  }
+
+  @media(max-width: 1001px) {
+    .musicSection-listen { margin: 0 48px; }
   }
 
   h1 { 
     margin: 0;
     font-size: 6em;
     font-weight: 500;
+    text-shadow: 8px 8px 12px var(--super-famous-black);
   }
 
   h2 { 
@@ -84,6 +85,7 @@ export default {
     margin-bottom: 8px;
     font-size: 2em;
     font-weight: 500;
+    text-shadow: 8px 8px 8px var(--super-famous-black);
   }
 
   .aplayer {

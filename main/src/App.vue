@@ -6,8 +6,8 @@
     <music-section />
     <section-header>Look at pictures of his stupid face</section-header>
     <photo-gallery />
-    <section-header>Analyze these vaguley arbitrary measurements of his software skills</section-header>
-    <dev-stats/>
+    <section-header>Follow him on his dumb social media things</section-header>
+    <social-media />
     <site-footer />
   </div>
 </template>
@@ -18,7 +18,7 @@ import IntroSection from "./components/IntroSection.vue";
 import SectionHeader from "./components/SectionHeader.vue";
 import MusicSection from "./components/MusicSection.vue";
 import PhotoGallery from "./components/PhotoGallery.vue";
-import DevStats from "./components/DevStats.vue";
+import SocialMedia from "./components/SocialMedia.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 
 export default {
@@ -29,7 +29,7 @@ export default {
     SectionHeader,
     MusicSection, 
     PhotoGallery, 
-    DevStats, 
+    SocialMedia, 
     SiteFooter },
 }
 </script>

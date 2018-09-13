@@ -24,7 +24,7 @@ export default {
   @import "../global.css";
   .siteHeader {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 16px 48px;
     border-bottom: 1px solid var(--super-famous-black);

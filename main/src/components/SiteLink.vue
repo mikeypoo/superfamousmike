@@ -17,6 +17,7 @@ export default {
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 3px;
+    display: none;
   }
 
   .siteLink:hover {
