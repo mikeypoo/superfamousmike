@@ -22,6 +22,12 @@
           You can find this <em>AND MORE</em> on my Instagram. Stay in touch!
         </div>
       </div>
+      <div class="or">- OR -</div>
+      <div
+        @click="goToRoot"
+        class="secondaryCta">
+        Check out my main, less-secret site
+      </div>
     </div>
   </div>
 </template>
@@ -61,6 +67,9 @@ export default {
   methods: {
     goToInstagram: function () {
       window.location.assign("https://www.instagram.com/superfamousmike");
+    },
+    goToRoot: function () {
+      window.location.assign("/");
     }
   }
 }
@@ -139,5 +148,24 @@ export default {
     height: 48px;
     width: 48px;
     margin: 0 16px;
+  }
+
+  .or {
+    margin: 16px 0;
+  }
+
+  .secondaryCta {
+    background: transparent;
+    padding: 16px;
+    border: 2px solid var(--super-famous-white);
+    border-radius: 2px;
+    color: var(--super-famous-white);
+    cursor: pointer;
+  }
+
+  .secondaryCta:hover {
+    background: var(--super-famous-white);
+    color: var(--super-famous-black);
+    box-shadow: 0 0 6px 4px var(--super-famous-green);
   }
 </style>
