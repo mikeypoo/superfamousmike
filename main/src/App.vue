@@ -1,45 +1,53 @@
 <template>
-  <div>
-    <site-header />
-    <intro-section />
-    <section-header>Listen to his <em>feelings</em> music</section-header>
-    <music-section />
-    <section-header>Look at pictures of his stupid face</section-header>
-    <photo-gallery />
-    <section-header>Follow him on his dumb social media things</section-header>
-    <social-media />
-    <site-footer />
+  <div class="appContainer">
+    <div :style="currentStyle">
+      {{ currentText }}
+    </div>
   </div>
 </template>
 
 <script>
-import SiteHeader from "./components/SiteHeader.vue";
-import IntroSection from "./components/IntroSection.vue";
-import SectionHeader from "./components/SectionHeader.vue";
-import MusicSection from "./components/MusicSection.vue";
-import PhotoGallery from "./components/PhotoGallery.vue";
-import SocialMedia from "./components/SocialMedia.vue";
-import SiteFooter from "./components/SiteFooter.vue";
 
 export default {
   name: 'app',
-  components: {
-    SiteHeader, 
-    IntroSection, 
-    SectionHeader,
-    MusicSection, 
-    PhotoGallery, 
-    SocialMedia, 
-    SiteFooter },
+  components: {},
+  data: () => {
+    return {
+      statements: [
+        { text: "OH!", timeout: 750, style: { fontSize: "48px"} },
+        { text: "Hi!!", timeout: 1000, style: { fontSize: "64px" } },
+        { text: "Welcome to my website!", timeout: 2000, fontSize: "36px" },
+      ],
+      currentText: "OH!",
+      currentStyle: { fontSize: "48px" }
+    };
+  },
+  mounted () {
+    this.statements.forEach(sttmnt => {
+      setTimeout(() => {
+        this.currentText  = sttmnt.text
+        this.currentStyle = sttmnt.style
+      }, sttmnt.timeout)
+    })
+
+  }
 }
 </script>
 
 <style>
   @import "./global.css";
+  html, body, .appContainer { height: 100% }
+
   body {
-    color: var(--super-famous-black);
-    background-color: var(--super-famous-white);
+    color: var(--super-famous-white);
+    background-color: var(--super-famous-black);
     font-family: var(--super-famous-font);
     margin: 0;
+  }
+
+  .appContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
