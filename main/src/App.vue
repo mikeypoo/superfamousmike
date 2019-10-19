@@ -13,7 +13,7 @@
 import { asyncForEach, sleep } from "./utils/dialogue"
 import pages from "./data/pages"
 
-const CHAR_RATE = 75
+const CHAR_RATE = 50
 
 export default {
   name: 'app',
@@ -65,6 +65,7 @@ export default {
 
   .appContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
