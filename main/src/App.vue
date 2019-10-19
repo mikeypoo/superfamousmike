@@ -1,35 +1,53 @@
 <template>
   <div class="appContainer">
-    <div :style="currentStyle">
+    <div class="currentPage">
       {{ currentText }}
+    </div>
+    <div v-if="showActions" class="actionButtons">
+      <button @click="onNext">Next</button>
     </div>
   </div>
 </template>
 
 <script>
+import { asyncForEach, sleep } from "./utils/dialogue"
+import pages from "./data/pages"
+
+const CHAR_RATE = 75
 
 export default {
   name: 'app',
   components: {},
   data: () => {
     return {
-      statements: [
-        { text: "OH!", timeout: 750, style: { fontSize: "48px"} },
-        { text: "Hi!!", timeout: 1000, style: { fontSize: "64px" } },
-        { text: "Welcome to my website!", timeout: 2000, fontSize: "36px" },
-      ],
-      currentText: "OH!",
-      currentStyle: { fontSize: "48px" }
+      pages,
+      currentText: "",
+      showActions: false,
     };
   },
-  mounted () {
-    this.statements.forEach(sttmnt => {
-      setTimeout(() => {
-        this.currentText  = sttmnt.text
-        this.currentStyle = sttmnt.style
-      }, sttmnt.timeout)
-    })
-
+  methods: {
+    writePage: function(key) {
+      return new Promise(async resolve => {
+        this.currentText = ""
+        this.showActions = false
+        await asyncForEach(this.pages[key].statements, async sttmnt => {
+          await asyncForEach(sttmnt.text.split(""), async char => {
+            this.currentText += char
+            await sleep(CHAR_RATE)
+          })
+          await sleep(sttmnt.timeout)
+        })
+        resolve()
+      })
+    },
+    onNext: async function() {
+      await this.writePage("introTwo")
+      this.showActions = true
+    }
+  },
+  async mounted () {
+    await this.writePage("intro")
+    this.showActions = true
   }
 }
 </script>
