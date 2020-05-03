@@ -8,8 +8,8 @@ module.exports = {
     },
     bonus: {
       entry: "bonus/src/index.js",
-      template: "public/mike_loves_jason_and_the_superband.html",
-      filename: "mike_loves_jason_and_the_superband.html"
+      template: "public/for_dad.html",
+      filename: "for_dad.html"
     }
   },
   configureWebpack: {
