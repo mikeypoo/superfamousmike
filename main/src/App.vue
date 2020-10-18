@@ -17,9 +17,11 @@ export default {
 
 <style>
 @import "./global.css";
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 body {
   color: var(--super-famous-black);
-  background-color: var(--super-famous-black);
+  background: black;
   font-family: var(--super-famous-font);
   margin: 0;
 }
@@ -29,6 +31,6 @@ body {
   overflow: hidden;
   max-width: 500px;
   margin: auto;
-  border: 1px solid var(--super-famous-white);
+  border-radius: 5px;
 }
 </style>
