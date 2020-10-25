@@ -9,48 +9,53 @@
               :class="{ 'gameboy__menu-item--selected': menuItem.selected }"
               :key="menuItem.id"
               v-for="menuItem in menuItems">
-              <span>{{ menuItem.name }}</span>
+              <span>{{ menuItem.selected ? `>${menuItem.name}` : menuItem.name }}</span>
+              <span v-if="menuItem.id === 3" class="gameboy__menu-item-exp">
+                {{`${experience()}/100 EXP`}}
+              </span>
             </div>
           </div>
         </transition>
         <transition name="content-slide">
           <div class="gameboy__content" v-if="shouldShow(0)">
-            MUSIC
+            <music-content :active="active" :eventHub="eventHub"/>
           </div>
         </transition>
         <transition name="content-slide">
           <div class="gameboy__content" v-if="shouldShow(1)">
-            HANDFARTS
+            <handfarts-content :active="active" :eventHub="eventHub"/>
           </div>
         </transition>
         <transition name="content-slide">
           <div class="gameboy__content" v-if="shouldShow(2)">
-            SOFTWARE
+            <software-content :active="active" :eventHub="eventHub"/>
           </div>
         </transition>
         <transition name="content-slide">
           <div class="gameboy__content" v-if="shouldShow(3)">
-            ???
+            <special-content />
           </div>
         </transition>
       </div>
     </div>
     <div class="gameboy__title">
-      Super Famous Mike
+      <div>
+        super_famous(mike)
+      </div>
     </div>
     <div class="gameboy__bottom">
       <div class="gameboy__control">
         <div class="gameboy__button gameboy__left">
-          ←
+          &lt;
         </div>
         <div class="gameboy__button gameboy__up" @click="moveBy(-1)">
-          ←
+          &lt;
         </div>
         <div class="gameboy__button gameboy__down" @click="moveBy(1)">
-          ←
+          &lt;
         </div>
         <div class="gameboy__button gameboy__right">
-          ←
+          &lt;
         </div>
       </div>
       <div class="gameboy__buttons">
@@ -74,12 +79,35 @@
 </template>
 
 <script>
+import Vue from "vue";
+import SubmenuContent from "./SubmenuContent.vue";
+import MusicContent from "./MusicContent.vue";
+import HandfartsContent from "./HandfartsContent.vue";
+import SoftwareContent from "./SoftwareContent.vue";
+import SpecialContent from "./SpecialContent.vue";
+
+import { init, hasEnough, addEXP, currentEXP } from "../lib/data_service";
+
+const eventHub = new Vue();
+
 export default {
   name: "GameBoy",
+  components: {
+    SubmenuContent,
+    MusicContent,
+    HandfartsContent,
+    SoftwareContent,
+    SpecialContent,
+  },
+  created() {
+    init();
+    console.error("well, aren't you clever? <3 super_famous(mike)");
+  },
   data: () => {
     return {
       active: 0,
       submenuId: null,
+      eventHub: eventHub,
     };
   },
   computed: {
@@ -88,19 +116,30 @@ export default {
         { id: 0, name: "Music", selected: this.active === 0 },
         { id: 1, name: "Handfarts", selected: this.active === 1 },
         { id: 2, name: "Software", selected: this.active === 2 },
-        { id: 3, name: "???", selected: this.active === 3 },
+        { id: 3, name: `???`, selected: this.active === 3 },
       ];
     },
   },
   methods: {
     selectActive: function() {
-      const chosen = this.menuItems.find((opt) => opt.selected);
-      this.active = null;
-      setTimeout(() => {
-        this.submenuId = chosen.id;
-      }, 300);
+      if (this.submenuId !== null) {
+        eventHub.$emit("selectInSubmenu");
+      } else {
+        const chosen = this.menuItems.find((opt) => opt.selected);
+
+        if (chosen.id === 3 && currentEXP() < 100) {
+          return;
+        }
+
+        this.active = null;
+        setTimeout(() => {
+          this.submenuId = chosen.id;
+          this.active = 0;
+        }, 300);
+      }
     },
     backToMenu: function() {
+      this.active = null;
       this.submenuId = null;
       setTimeout(() => {
         this.active = 0;
@@ -122,6 +161,9 @@ export default {
         return this.submenuId === id;
       }
     },
+    experience() {
+      return currentEXP();
+    },
   },
 };
 </script>
@@ -139,7 +181,7 @@ export default {
 }
 
 .gameboy__top {
-  flex: 15;
+  flex: 12;
   display: flex;
   flex-direction: column;
 }
@@ -154,15 +196,20 @@ export default {
 
 .gameboy__menu {
   flex: 1;
+  min-width: 100%;
 }
 
 .gameboy__menu-item {
-  font-size: 28px;
-  height: 40px;
+  font-size: 18px;
+  min-width: 100%;
   border-bottom: 2px solid var(--super-famous-black);
   color: var(--super-famous-black);
-  padding-top: 16px;
-  padding-left: 24px;
+  padding: 16px 24px;
+}
+
+.gameboy__menu-item-exp {
+  font-size: 12px;
+  color: var(--super-famous-gray);
 }
 
 .gameboy__menu-item--selected {
@@ -190,10 +237,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 32px;
 }
 
 .gameboy__title {
-  font-size: 18px;
+  font-size: 12px;
   text-align: center;
   flex: 1;
 }
@@ -226,6 +274,8 @@ export default {
   align-items: center;
   font-size: 32px;
   cursor: pointer;
+  padding-top: 3px;
+  user-select: none;
 }
 
 .gameboy__left {
@@ -284,8 +334,8 @@ export default {
   height: 100%;
   width: 7.5%;
   background: var(--super-famous-black);
-  top: 1px;
-  left: 1px;
+  top: 0;
+  left: 0;
 }
 
 .gameboy__hacky-fix--right {
@@ -293,7 +343,7 @@ export default {
   height: 100%;
   width: 7.5%;
   background: var(--super-famous-black);
-  top: 1px;
-  right: 1px;
+  top: 0;
+  right: 0;
 }
 </style>
