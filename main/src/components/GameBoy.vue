@@ -175,12 +175,13 @@ export default {
 @import "../global.css";
 
 .gameboy {
-  height: 100%;
+  height: 90%;
   background: var(--super-famous-black);
   color: var(--super-famous-white);
   display: flex;
   flex-direction: column;
   position: relative;
+  border-radius: 5px;
 }
 
 .gameboy__top {
@@ -339,6 +340,7 @@ export default {
   background: var(--super-famous-black);
   top: 0;
   left: 0;
+  border-radius: 5px;
 }
 
 .gameboy__hacky-fix--right {
@@ -348,6 +350,7 @@ export default {
   background: var(--super-famous-black);
   top: 0;
   right: 0;
+  border-radius: 5px;
 }
 
 .gameboy--red {
