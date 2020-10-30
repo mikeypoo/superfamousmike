@@ -1,5 +1,5 @@
 <template>
-  <div class="gameboy">
+  <div class="gameboy" id="gameboy">
     <div class="gameboy__top">
       <div class="gameboy__screen">
         <transition name="menu-slide">
@@ -71,10 +71,11 @@
         </div>
       </div>
     </div>
-    <div class="gameboy__hacky-fix--left">
+    <div class="gameboy__hacky-fix--left" id="hacky-left">
     </div>
-    <div class="gameboy__hacky-fix--right">
+    <div class="gameboy__hacky-fix--right" id="hacky-right">
     </div>
+    <select-color />
   </div>
 </template>
 
@@ -85,6 +86,7 @@ import MusicContent from "./MusicContent.vue";
 import HandfartsContent from "./HandfartsContent.vue";
 import SoftwareContent from "./SoftwareContent.vue";
 import SpecialContent from "./SpecialContent.vue";
+import SelectColor from "./SelectColor.vue";
 
 import { init, hasEnough, addEXP, currentEXP } from "../lib/data_service";
 
@@ -98,6 +100,7 @@ export default {
     HandfartsContent,
     SoftwareContent,
     SpecialContent,
+    SelectColor,
   },
   created() {
     init();
@@ -345,5 +348,65 @@ export default {
   background: var(--super-famous-black);
   top: 0;
   right: 0;
+}
+
+.gameboy--red {
+  background: #ff4f4c;
+}
+
+.gameboy--purple {
+  background: #492c6e;
+}
+
+.gameboy--blue {
+  background: #4a6dcc;
+}
+
+.gameboy--green {
+  background: #88d14b;
+}
+
+.gameboy--yellow {
+  background: #d4bb2a;
+}
+
+.gameboy__hacky-fix--left--red {
+  background: #ff4f4c;
+}
+
+.gameboy__hacky-fix--left--purple {
+  background: #492c6e;
+}
+
+.gameboy__hacky-fix--left--blue {
+  background: #4a6dcc;
+}
+
+.gameboy__hacky-fix--left--green {
+  background: #88d14b;
+}
+
+.gameboy__hacky-fix--left--yellow {
+  background: #d4bb2a;
+}
+
+.gameboy__hacky-fix--right--red {
+  background: #ff4f4c;
+}
+
+.gameboy__hacky-fix--right--purple {
+  background: #492c6e;
+}
+
+.gameboy__hacky-fix--right--blue {
+  background: #4a6dcc;
+}
+
+.gameboy__hacky-fix--right--green {
+  background: #88d14b;
+}
+
+.gameboy__hacky-fix--right--yellow {
+  background: #d4bb2a;
 }
 </style>
