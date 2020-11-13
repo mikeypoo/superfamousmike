@@ -32,6 +32,5 @@ body {
   max-width: 500px;
   margin: auto;
   border-radius: 5px;
-  margin-top: 5%;
 }
 </style>
