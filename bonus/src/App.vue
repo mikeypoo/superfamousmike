@@ -1,161 +1,211 @@
 <template>
-  <div class="bonus">
-    <div class="bonus-header">
-      <h2>Use this to convert hours, minutes, and seconds into a hours as a decimal</h2>
-    </div>
-    <div class="bonus-music">
-      <div class="bonus-musicHeader">
-        <input type="text" v-model="hours" placeholder="Hours">
-        <input type="text" v-model="minutes" placeholder="Minutes">
-        <input type="text" v-model="seconds" placeholder="Seconds">
-        <div v-if="filledIn">
-          <div>
-            {{ hours }} hours, {{ minutes }} minutes, and {{ seconds }} seconds
-          </div>
-          <div>is</div>
-          <div>{{ computeHours.toFixed(2) }} hours as a decimal</div>
-        </div>
-        <div v-if="!filledIn">
-          <div>
-            Fill in each input
-          </div>
-        </div>
+  <div>
+    <h1 class="header">Name That Country Tune</h1>
+    <div class="bonus">
+      <div @click="showModal(question)" :class="computeClass(question)" v-for="question in questions" :key="question.key">
+        {{question.text}}
+      </div>
+      <div class="modal" v-if="showingModal">
+        Change Color:
+        <div class="modalitem" @click="changeItemColor(activeItem, 'green')">Green</div>
+        <div class="modalitem" @click="changeItemColor(activeItem, 'red')">Red</div>
+        <div class="modalitem" @click="changeItemColor(activeItem, 'yellow')">Yellow</div>
+        <div class="modalitem" @click="changeItemColor(activeItem, 'wrong')">Incorrect</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Aplayer from "vue-aplayer";
 export default {
-  name: 'app',
-  components: { Aplayer },
+  name: "app",
   data: () => {
     return {
-      hours: null,
-      minutes: null,
-      seconds: null
-    }
+      showingModal: false,
+      activeItem: null,
+      questions: [
+        {
+          key: 1,
+          text: "1",
+          color: "blue",
+        },
+        {
+          key: 2,
+          text: "2",
+          color: "blue",
+        },
+        {
+          key: 3,
+          text: "3",
+          color: "blue",
+        },
+        {
+          key: 4,
+          text: "4",
+          color: "blue",
+        },
+        {
+          key: 5,
+          text: "5",
+          color: "blue",
+        },
+        {
+          key: 6,
+          text: "6",
+          color: "blue",
+        },
+        {
+          key: 7,
+          text: "7",
+          color: "blue",
+        },
+        {
+          key: 8,
+          text: "8",
+          color: "blue",
+        },
+        {
+          key: 9,
+          text: "9",
+          color: "blue",
+        },
+        {
+          key: 10,
+          text: "10",
+          color: "blue",
+        },
+        {
+          key: 11,
+          text: "11",
+          color: "blue",
+        },
+        {
+          key: 12,
+          text: "12",
+          color: "blue",
+        },
+        {
+          key: 13,
+          text: "13",
+          color: "blue",
+        },
+        {
+          key: 14,
+          text: "14",
+          color: "blue",
+        },
+        {
+          key: 15,
+          text: "15",
+          color: "blue",
+        },
+        {
+          key: 16,
+          text: "16",
+          color: "blue",
+        },
+      ],
+    };
   },
-  computed: {
-    filledIn: function () {
-      return this.hours && this.minutes && this.seconds
+  methods: {
+    computeClass: function(item) {
+      return `griditem griditem--${item.color}`;
     },
-    computeHours: function () {
-      if (this.hours && this.minutes && this.seconds) {
-        const numHours = parseFloat(this.hours)
-        const numMinutes = parseFloat(this.minutes)
-        const numSeconds = parseFloat(this.seconds)
-
-        const total = numHours + (numMinutes / 60) + (numSeconds / 3600)
-        console.log("TOTAL", total)
-        return total
-      } else {
-        return 0.0
-      }
-    }
-  }
-}
+    showModal: function(item) {
+      this.activeItem = item;
+      this.showingModal = !this.showingModal;
+    },
+    changeItemColor: function(item, color) {
+      item.color = color;
+      item.text = "";
+      this.showingModal = false;
+    },
+  },
+};
 </script>
 
 <style>
-  @import "./global.css";
-  body {
-    color: var(--super-famous-white);
-    background-color: var(--super-famous-black);
-    font-family: var(--super-famous-font);
-    margin: 0;
-  }
+@import "./global.css";
+body {
+  color: var(--super-famous-white);
+  background-color: var(--super-famous-black);
+  font-family: var(--super-famous-font);
+  margin: 0;
+}
 </style>
 
 <style scoped>
-  .bonus {
-    background: var(--super-famous-black);
-  }
+.bonus {
+  background: var(--super-famous-black);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 32px;
+}
 
-  .bonus-header {
-    background: var(--super-famous-white);
-    color: var(--super-famous-black);
-    text-align: center;
-    padding: 32px;
-  }
+.griditem {
+  color: white;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  border: 1px solid white;
+  cursor: pointer;
+  font-size: 60px;
+}
 
-  h2 {
-    margin: 0;
-    margin-bottom: 16px;
-  }
+.griditem--blue {
+  background: darkblue;
+}
 
-  .bonus-music {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 32px;
-    padding-bottom: 32px;
-  }
+.griditem--green {
+  background: darkgreen;
+}
 
-  .bonus-musicHeader {
-    text-align: center;
-    padding: 32px;
-  }
+.griditem--red {
+  background: darkred;
+}
 
-  .bonus-musicTracks {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.griditem--yellow {
+  background: yellow;
+  color: black;
+}
 
-  .aplayer { width: 100%; }
+.griditem--wrong {
+  background: grey;
+  color: black;
+}
 
-  .bonus-follow {
-    background: var(--super-famous-white);
-    border-radius: 2px;
-    padding: 32px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    margin-top: 32px;
-    cursor: pointer;
-  }
+.modal {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  height: 300px;
+  width: 500px;
+  background: white;
+  color: black;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+  border-radius: 5px;
+}
 
-  .bonus-follow:hover {
-    box-shadow: 0 0 6px 4px var(--super-famous-green);
-  }
-  
-  .bonus-followText {
-    color: var(--super-famous-black);
-  }
+.modalitem {
+  height: 50px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
 
-  svg {
-    height: 48px;
-    width: 48px;
-    margin: 0 16px;
-  }
-
-  .or {
-    margin: 16px 0;
-  }
-
-  .secondaryCta {
-    background: transparent;
-    padding: 16px;
-    border: 2px solid var(--super-famous-white);
-    border-radius: 2px;
-    color: var(--super-famous-white);
-    cursor: pointer;
-  }
-
-  .secondaryCta:hover {
-    background: var(--super-famous-white);
-    color: var(--super-famous-black);
-    box-shadow: 0 0 6px 4px var(--super-famous-green);
-  }
-
-  img { 
-    width: 100%; 
-    max-width: 600px;
-    max-height: 400px;
-    object-fit: contain;
-  }
+.header {
+  text-align: center;
+}
 </style>

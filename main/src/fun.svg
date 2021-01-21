@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <style>
+    rect {
+      fill: #c5c5c5;
+      transform: rotate(-15deg);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    ellipse {
+      transform: rotate(-10deg);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    path {
+      stroke-width: 10px;
+      stroke: green;
+      fill: none;
+    }
+
+    .shadow {
+      fill: #777777 !important;
+      transform: rotate(-15deg) translateY(15px);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+  </style>
+  <ellipse class="shadow" cx="243" cy="182" rx="50" ry="100"/>
+  <ellipse class="shadow" cx="428" cy="158" rx="50" ry="100"/>
+  <rect class="shadow" width="400" height="200" rx="20" x="280" y="300"/>
+
+  <ellipse cx="263" cy="182" rx="50" ry="100" stroke-width="4" stroke="white"/>
+  <ellipse cx="448" cy="158" rx="50" ry="100" stroke-width="4" stroke="white"/>
+  <rect width="400" height="200" rx="20" x="300" y="300" stroke-width="4" stroke="white"/>
+
+  <rect width="5" height="5" rx="20" x="658" y="258" stroke-width="4" stroke="blue"/>
+  <path d="M 659.03 261.923 L 523.564 239.645 C 547.938 164.897 548.199 109.161 480.165 61.554 C 499.524 15.829 377.147 3.61 351.971 99.855" />
+  <path d="M 393.702 379.612 L 379.279 353.268 C 349.506 310.693 299.715 292.449 333.961 168.258 C 352.842 114.021 444.151 103.338 499.457 162.391" />
+</svg>
