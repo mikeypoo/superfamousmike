@@ -22,17 +22,45 @@
         {{question.text}}
       </div>
     </div>
+
+    <div v-if="showMenu" class="modal">
+      Input the labels for the questions separated by commas.
+      <textarea class="modalinput modalinput--area" rows="4" placeholder="Hits of the 80's, Male Artists, Current Hits..." v-model="editingConfig.config" />
+      Input the names of the contestants separated by commas.
+      <input class="modalinput" type="text" placeholder="Red, Green, Yellow" v-model="editingConfig.players">
+      <button class="modalbutton" @click="submitEditingConfig()">Update Game</button>
+      <div class="modalhint">
+        (hit the ESC key to close this menu)
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { config, players } from "./config";
+import { defaultConfig } from "./config";
+
+const games = JSON.parse(localStorage.getItem("NTCTGames"));
+const activeIdx = 0;
+const activeGame = games && games[activeIdx];
+
+let config = null;
+let players = null;
+
+if (activeGame) {
+  config = games[activeIdx].config;
+  players = games[activeIdx].players;
+} else {
+  config = defaultConfig.config;
+  players = defaultConfig.players;
+}
 
 export default {
   name: "app",
   data: () => {
     return {
       activeItem: null,
+      showMenu: false,
+      editingConfig: { config: null, players: null },
       questions: [
         {
           key: 1,
@@ -118,6 +146,15 @@ export default {
       players,
     };
   },
+  created() {
+    addEventListener("keydown", (event) => {
+      if (event.key === "e") {
+        this.showMenu = true;
+      } else if (event.key === "Escape") {
+        this.showMenu = false;
+      }
+    });
+  },
   methods: {
     circleClass: function(color) {
       return `control-circle control-circle--${color}`;
@@ -144,6 +181,40 @@ export default {
       this.activeItem.color = color;
       this.activeItem.text = "";
       this.activeItem = null;
+    },
+    submitEditingConfig: function() {
+      const newConfigString = this.editingConfig.config;
+      const newPlayersString = this.editingConfig.players;
+
+      if (!(newConfigString && newPlayersString)) {
+        return null;
+      }
+
+      const newConfigList = newConfigString.split(",").map((str) => str.trim());
+      const newPlayersList = newPlayersString
+        .split(",")
+        .map((str) => str.trim());
+
+      if (newConfigList.length !== 16) {
+        alert("you need to specify 16 labels for the questions");
+        return null;
+      } else if (newPlayersList.length !== 3) {
+        alert("you need to provide exactly 3 player names");
+        return null;
+      }
+
+      const newConfig = {
+        config: newConfigList,
+        players: {
+          red: newPlayersList[0],
+          green: newPlayersList[1],
+          yellow: newPlayersList[2],
+        },
+      };
+
+      localStorage.setItem("NTCTGames", JSON.stringify([newConfig]));
+      this.showMenu = false;
+      window.location.reload();
     },
   },
 };
@@ -217,17 +288,39 @@ body {
   position: absolute;
   top: 200px;
   left: 50%;
-  height: 300px;
   width: 500px;
   background: white;
   color: black;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
   padding: 20px;
   border-radius: 5px;
+}
+
+.modalinput {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modalinput--area {
+  height: 100px;
+}
+
+.modalbutton {
+  background: black;
+  color: white;
+  padding: 12px 40px;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.modalhint {
+  color: darkgrey;
+  font-size: 14px;
+  margin: auto;
+  padding-top: 12px;
 }
 
 .modalitem {
