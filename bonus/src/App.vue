@@ -19,7 +19,7 @@
     </div>
     <div class="bonus">
       <div @click="setActiveItem(question)" :class="computeClass(question)" v-for="question in questions" :key="question.key">
-        {{question.text}}
+        {{question.filledIn ? '' : question.text}}
       </div>
     </div>
 
@@ -167,6 +167,13 @@ export default {
       }
     },
     setActiveItem: function(item) {
+      if (item.filledIn) {
+        item.filledIn = false;
+        item.color = "blue";
+        this.activeItem = item;
+        return null;
+      }
+
       if (item.color === "blue") {
         if (this.activeItem === null) {
           this.activeItem = item;
@@ -179,7 +186,7 @@ export default {
     },
     assignColor: function(color) {
       this.activeItem.color = color;
-      this.activeItem.text = "";
+      this.activeItem.filledIn = true;
       this.activeItem = null;
     },
     submitEditingConfig: function() {
