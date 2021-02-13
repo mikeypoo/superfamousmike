@@ -40,7 +40,7 @@
     </div>
     <div class="gameboy__title">
       <div>
-        super_famous(mike)
+        Super Famous Mike
       </div>
     </div>
     <div class="gameboy__bottom">
