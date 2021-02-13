@@ -6,8 +6,8 @@
 const idToUrl = {
   0: "https://open.spotify.com/artist/3AGkrCLPPee2uNR3RRCXGP",
   1: "https://www.youtube.com/user/manualistmike",
-  2: "https://open.spotify.com/track/47QsOCB8bSDo4YmhbHkvCf",
-  3: "https://www.youtube.com/watch?v=D73hhSVH5Es",
+  2: "https://open.spotify.com/track/6psltr8Pmpa7k7ioslDT12?si=ea1dd8955f0249b6",
+  3: "https://open.spotify.com/track/2ruxFoXdG2gDVUfBnBFzFb?si=0d03e67e4a6348e0",
 };
 
 import SubmenuContent from "./SubmenuContent.vue";
@@ -29,7 +29,7 @@ export default {
         { id: 0, name: "Spotify", selected: this.active === 0 },
         { id: 1, name: "YouTube", selected: this.active === 1 },
         { id: 2, name: "Latest Tune", selected: this.active === 2 },
-        { id: 3, name: "Music Video", selected: this.active === 3 },
+        { id: 3, name: "Lawrence Feature", selected: this.active === 3 },
       ];
     },
   },
