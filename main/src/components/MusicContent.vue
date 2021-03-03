@@ -6,7 +6,7 @@
 const idToUrl = {
   0: "https://open.spotify.com/artist/3AGkrCLPPee2uNR3RRCXGP",
   1: "https://www.youtube.com/user/manualistmike",
-  2: "https://open.spotify.com/track/6psltr8Pmpa7k7ioslDT12?si=ea1dd8955f0249b6",
+  2: "https://open.spotify.com/track/0PffnMoxBy87lI65e2MNnC?si=ba79cfefdc074141",
   3: "https://open.spotify.com/track/2ruxFoXdG2gDVUfBnBFzFb?si=0d03e67e4a6348e0",
 };
 
