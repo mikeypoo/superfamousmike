@@ -104,7 +104,7 @@ export default {
   },
   created() {
     init();
-    console.error("well, aren't you clever? <3 super_famous(mike)");
+    console.error("well, aren't you clever? <3 Super Famous Mike");
   },
   data: () => {
     return {
