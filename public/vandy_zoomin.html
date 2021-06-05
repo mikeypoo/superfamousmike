@@ -8,15 +8,58 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <title>VANDY ZOOMIN!</title>
     <head>
-      <script>
-        if (window.confirm('Vandy Zoomin is best enjoyed in full screen. Is that groovy?')) {
-          window.document.requestFullscreen()
-        }
-      </script>
       <script src="phaser.min.js"></script>
       <script src="game.js"></script>
+      <script>
+        function stopClick (event) {
+          event.stopPropagation()
+          event.preventDefault()
+        }
+
+        function confirmFullscreen (event) {
+          const canvasEl = document.getElementsByTagName('canvas')[0]
+          const shimEl = document.getElementsByClassName('fullscreen-shim')[0]
+          const modalEl = document.getElementsByClassName('fullscreen-modal')[0]
+
+          if (canvasEl && shimEl && modalEl) {
+            canvasEl.requestFullscreen()
+            shimEl.remove()
+            modalEl.remove()
+          }
+        }
+      </script>
       <style>
         body { margin: 0; }
+        .fullscreen-shim {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.5);
+        }
+
+        .fullscreen-modal {
+          width: 80%;
+          height: 100px;
+          background: white;
+          position: absolute;
+          top: 50%;
+          left: 10%;
+          transform: translateY(-50%);
+          border: 5px solid red;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        button {
+          margin-top: 10px;
+          background: yellow;
+          padding: 10px;
+          border-radius: 4px;
+          border: 1px solid black;
+        }
       </style>
     </head>
   </head>
@@ -24,5 +67,10 @@
     <noscript>
       <strong>We're sorry but Vandy Zoomin' doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <div class="fullscreen-shim" onclick="stopClick(event)"></div>
+    <div class="fullscreen-modal">
+      Vandy Zoomin is best enjoyed in fullscreen mode. Is that groovy?
+      <button type="button" onclick="confirmFullscreen(event)">Yeah, that's cool.</button>
+    </div>
   </body>
 </html>
