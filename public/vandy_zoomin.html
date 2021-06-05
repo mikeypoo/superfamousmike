@@ -10,18 +10,9 @@
     <head>
       <script src="phaser.min.js"></script>
       <script src="game.js"></script>
-      <script>
-        window.onresize = function() {
-          console.log('happens')
-          document.body.height = window.innerHeight
-        }
-
-        document.addEventListener('DOMContentLoaded', function(event) {
-          window.onresize()
-        })
-      </script>
       <style>
         body { margin: 0; }
+        canvas { transform: scale(0.8); }
       </style>
     </head>
   </head>
