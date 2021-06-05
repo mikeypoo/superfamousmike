@@ -22,7 +22,13 @@
           const modalEl = document.getElementsByClassName('fullscreen-modal')[0]
 
           if (canvasEl && shimEl && modalEl) {
-            canvasEl.requestFullscreen()
+            if (canvasEl.requestFullscreen) {
+              canvasEl.requestFullscreen()
+            } else if (canvasEl.webkitRequestFullscreen) {
+              canvasEl.webkitRequestFullscreen()
+            } else if (canvasEl.mozRequestFullScreen) {
+              canvasEl.mozRequestFullScreen()
+            }
             shimEl.remove()
             modalEl.remove()
           }
