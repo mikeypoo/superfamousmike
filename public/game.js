@@ -357,7 +357,7 @@ class GameplayScene extends Phaser.Scene {
       if (this.casualtyCount === 5) {
         this.scene.stop();
         this.intervals.forEach((inty) => clearInterval(inty));
-        this.scene.get("CasualtyScene").scene.restart();
+        this.scene.get("CasualtyScene").scene.restart({ score: this.score });
       }
       this.casualtyCount += 1;
       this.casualtyText.setText("x " + (5 - this.casualtyCount));
@@ -439,8 +439,12 @@ class GameplayScene extends Phaser.Scene {
 }
 
 class CasualtyScene extends Phaser.Scene {
-  constructor() {
+  constructor(data) {
     super("CasualtyScene");
+  }
+
+  init(data) {
+    this.score = data ? data.score : null;
   }
 
   preload() {
@@ -455,12 +459,18 @@ class CasualtyScene extends Phaser.Scene {
     ];
   }
 
-  create() {
+  create(data) {
     this.add.image(270, 480, this.randomCasualtyScene());
     this.input.on("pointerdown", () => {
       this.scene.stop();
       this.scene.get("MenuScene").scene.restart();
     });
+    if (this.score) {
+      this.add.text(175, 700, `score: ${this.score}`, {
+        fontSize: "32px",
+        fill: "yellow",
+      });
+    }
   }
 
   update() {
