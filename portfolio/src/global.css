@@ -1,0 +1,7 @@
+:root {
+  --super-famous-black: #2b2b2b;
+  --super-famous-black-opaque: lighten(#2b2b2b, 0.5);
+  --super-famous-white: white;
+  --super-famous-green: #168e4c;
+  --super-famous-font: 'Tenor Sans', sans-serif;
+}

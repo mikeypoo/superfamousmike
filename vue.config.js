@@ -11,6 +11,11 @@ module.exports = {
       template: "public/for_dad.html",
       filename: "for_dad.html",
     },
+    portfolio: {
+      entry: "portfolio/src/index.js",
+      template: "public/portfolio.html",
+      filename: "portfolio.html",
+    },
   },
   configureWebpack: {
     output: {

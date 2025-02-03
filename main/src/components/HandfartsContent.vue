@@ -5,7 +5,7 @@
 <script>
 const idToUrl = {
   0: "https://www.instagram.com/superfamousmike/",
-  1: "https://youtu.be/NlcGrb5A11s?t=128s",
+  1: "https://www.youtube.com/watch?v=jqGLPyHGvVQ",
   2: "https://youtu.be/LjM_9XQfqTk",
   3: "https://www.youtube.com/watch?v=15-_Y7COWas",
 };
